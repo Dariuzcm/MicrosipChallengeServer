@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
-    "start": "node server.js",
+    "start": "cd build && yarn install --production && node ./build/server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
@@ -34,5 +34,8 @@
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.20",
     "sqlite3": "^5.0.2"
+  },
+  "engines": {
+    "node": "14.17.0"
   }
 }
