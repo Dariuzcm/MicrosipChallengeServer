@@ -1,0 +1,24 @@
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+
+export default class Articles extends BaseSchema {
+  protected tableName = 'articles'
+
+  public async up() {
+    this.schema.createTable(this.tableName, (table) => {
+      table.increments('id')
+      table.string('name', 100)
+      table.double('price', 50)
+      table.double('cost', 50)
+      table.text('description')
+      /**
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       */
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
+    })
+  }
+
+  public async down() {
+    this.schema.dropTable(this.tableName)
+  }
+}
