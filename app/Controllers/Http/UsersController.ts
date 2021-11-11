@@ -10,7 +10,9 @@ export default class UsersController {
     }
 
     try {
-      const token = await auth.use('api').attempt(email || username, password)
+      const token = await auth.use('api').attempt(email || username, password, {
+        expiresIn: '30mins',
+      })
       return {
         token,
         user: {

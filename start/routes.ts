@@ -23,6 +23,12 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
   Route.post('/login', 'UsersController.login')
   Route.post('/', 'UsersController.createUser')
+  Route.post('/logout', async ({ auth }) => {
+    await auth.use('api').revoke()
+    return {
+      revoked: true,
+    }
+  }).middleware('auth')
 }).prefix('/api/users')
 
 Route.group(() => {
