@@ -4,7 +4,6 @@ import Article from 'App/Models/Article'
 
 export default class ArticlesController {
   public async getAll() {
-    const total = await Article.query().count('* as total')
     const articles = await Article.all()
 
     return articles
